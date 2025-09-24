@@ -1,0 +1,1 @@
+ErrorDocument 404 file:///C:/Users/LENOVO/Downloads/barberia/404.html

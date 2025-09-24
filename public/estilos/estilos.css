@@ -1,0 +1,71 @@
+   body {
+margin: 0;
+            font-family: 'Montserrat', Arial, sans-serif;
+            background: #181818;
+            color: #fff;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .login-container {
+            background: rgba(24,24,24,0.98);
+            border-radius: 18px;
+            box-shadow: 0 2px 18px rgba(0,0,0,0.4);
+            padding: 40px 30px 30px 30px;
+            max-width: 370px;
+            width: 100%;
+            text-align: center;
+        }
+        .login-logo {
+            width: 90px;
+            margin-bottom: 18px;
+        }
+        .login-title {
+            font-family: 'Old Standard TT', 'Georgia', serif;
+            color: #e0b84c;
+            font-size: 2rem;
+            margin-bottom: 18px;
+            letter-spacing: 2px;
+        }
+        .login-form input, .login-form select {
+            width: 100%;
+            padding: 13px 1px;
+            margin-bottom: 16px;
+            border-radius: 8px;
+            border: none;
+            font-size: 1.1rem;
+            background: #eaeaea;
+            color: #222;
+            font-family: 'Montserrat', Arial, sans-serif;
+        }
+        .login-form button {
+            width: 100%;
+            background: #e0b84c;
+            color: #181818;
+            border: none;
+            border-radius: 8px;
+            padding: 12px 0;
+            font-weight: bold;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: background 0.2s;
+            margin-top: 10px;
+        }
+        .login-form button:hover {
+            background: #c59d5f;
+            color: #fff;
+        }
+        .login-error {
+            color: #e74c3c;
+            margin-bottom: 10px;
+            font-size: 1rem;
+            min-height: 22px;
+        }
+        .login-footer {
+            margin-top: 22px;
+            color: #aaa;
+            font-size: 0.97rem;
+        }
+
+        
