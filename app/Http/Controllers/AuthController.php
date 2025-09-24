@@ -27,18 +27,30 @@ class AuthController extends Controller
         $email = $request->email;
         $password = $request->password;
 
-        // Buscar en administradores
-        $admin = Administrador::where('correo', $email)->first();
-        if ($admin && Hash::check($password, $admin->password)) {
-            session(['user_type' => 'administrador', 'user_id' => $admin->id_admin, 'user_name' => $admin->nombre]);
-            return redirect()->route('panel')->with('success', 'Bienvenido, ' . $admin->nombre);
+        // ADMINISTRADOR POR DEFECTO (SIN BASE DE DATOS)
+        if ($email === 'admin@barberia.com' && $password === 'admin123') {
+            session(['user_type' => 'administrador', 'user_id' => 1, 'user_name' => 'Administrador']);
+            return redirect()->route('panel')->with('success', 'Bienvenido, Administrador');
         }
 
-        // Buscar en barberos (usar telefono como email)
-        $barbero = Barbero::where('telefono', $email)->first();
-        if ($barbero && Hash::check($password, $barbero->password)) {
-            session(['user_type' => 'barbero', 'user_id' => $barbero->id_barbero, 'user_name' => $barbero->nombre]);
-            return redirect()->route('panel')->with('success', 'Bienvenido, ' . $barbero->nombre);
+        // Intentar autenticación con base de datos (si existe)
+        try {
+            // Buscar en administradores
+            $admin = Administrador::where('correo', $email)->first();
+            if ($admin && Hash::check($password, $admin->password)) {
+                session(['user_type' => 'administrador', 'user_id' => $admin->id_admin, 'user_name' => $admin->nombre]);
+                return redirect()->route('panel')->with('success', 'Bienvenido, ' . $admin->nombre);
+            }
+
+            // Buscar en barberos (usar telefono como email)
+            $barbero = Barbero::where('telefono', $email)->first();
+            if ($barbero && Hash::check($password, $barbero->password)) {
+                session(['user_type' => 'barbero', 'user_id' => $barbero->id_barbero, 'user_name' => $barbero->nombre]);
+                return redirect()->route('panel')->with('success', 'Bienvenido, ' . $barbero->nombre);
+            }
+        } catch (\Exception $e) {
+            // Si hay error de base de datos, solo usar el admin por defecto
+            // El admin por defecto ya se verificó arriba
         }
 
         // Los clientes no pueden acceder al sistema administrativo

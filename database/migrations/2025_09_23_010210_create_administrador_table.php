@@ -17,6 +17,7 @@ return new class extends Migration
             $table->string('apellido', 30)->nullable();
             $table->integer('telefono')->nullable();
             $table->string('correo', 40)->nullable();
+            $table->string('password');
         });
     }
 

@@ -20,6 +20,7 @@ return new class extends Migration
             $table->integer('num_doc')->nullable();
             $table->integer('salario')->nullable();
             $table->tinyInteger('edad')->nullable();
+            $table->string('password');
         });
     }
 
